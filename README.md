@@ -42,3 +42,10 @@ it is the actual program. Rum it to enter a city and country and see prayer time
 ## test_prayer_times.py
 it is the test file which checks the selected parts of the program behave as expected such as choosing the next prayer ad handling a simulated timeout. (to run the tests:python -m unittest -v)
 
+## Example Output
+
+![Terminal output showing a network error and successful Karachi prayer times](screenshots/prayer-times-demo.png)
+
+This screenshot demonstrates the program's output and how it reports a connection problem. The first run shows a DNS lookup failure (`getaddrinfo failed`), which indicates a temporary network/DNS issue and does not necessarily mean the API is down. The second run shows the prayer times returned for Karachi.
+
+
