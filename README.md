@@ -36,7 +36,7 @@ locations instead of terminating with an unhandled request error.
 
 
 ## Prayer_times.py
-it is the actual program. Rum it to enter a city and country and see prayer times and the next- prayer countdown (in hours and minutes)
+it is the actual program. Run it to enter a city and country and see prayer times and the next- prayer countdown (in hours and minutes)
 
 
 ## test_prayer_times.py
