@@ -73,6 +73,26 @@ def fetch_prayer_data(city, country, date=None, timeout=10):
         print(f"Could not read the API response: {e}")
         return None
 
+def get_next_prayer(timings, now):
+    """Return the next prayer name and its local datetime."""
+    upcoming = []
+    for prayer in PRAYERS:
+        prayer_time = datetime.strptime(timings[prayer].split()[0], "%H:%M").time()
+        prayer_datetime = datetime.combine(now.date(), prayer_time).replace(
+            tzinfo=now.tzinfo
+        )
+        if prayer_datetime > now:
+            upcoming.append((prayer_datetime, prayer))
+
+    if upcoming:
+        prayer_datetime, prayer = min(upcoming)
+        return prayer, prayer_datetime
+
+    fajr_time = datetime.strptime(timings["Fajr"].split()[0], "%H:%M").time()
+    tomorrow_fajr = datetime.combine(
+        now.date() + timedelta(days=1), fajr_time
+    ).replace(tzinfo=now.tzinfo)
+    return "Fajr", tomorrow_fajr
 
 def main():
     city = input("Enter city: ").strip()
