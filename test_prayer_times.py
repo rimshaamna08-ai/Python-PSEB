@@ -36,7 +36,15 @@ class GetNextPrayerTests(unittest.TestCase):
 
 
 
+class FetchPrayerDataTests(unittest.TestCase):
+    def test_timeout_returns_none_and_reports_error(self):
+        output = io.StringIO()
+        with patch("prayer_times.urllib.request.urlopen", side_effect=TimeoutError):
+            with redirect_stdout(output):
+                result = fetch_prayer_data("Karachi", "Pakistan")
 
+        self.assertIsNone(result)
+        self.assertIn("timed out", output.getvalue())
 
 
 if __name__ == "__main__":
